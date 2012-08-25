@@ -11,6 +11,7 @@ def list_torrents():
       'progress': torrent.progress,
       'eta': torrent.format_eta(),
       'status': torrent.status,
+      'hashString': torrent.hashString,
       'files': torrent.files()
     }
 
