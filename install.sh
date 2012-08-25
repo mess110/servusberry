@@ -1,5 +1,5 @@
-sudo apt-get install update
-sudo apt-get install upgrade
+# sudo apt-get update
+# sudo apt-get upgrade
 
 sudo apt-get install transmission-daemon git-core python-pip
 
