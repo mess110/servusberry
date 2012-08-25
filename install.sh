@@ -1,7 +1,7 @@
 # sudo apt-get -y update
 # sudo apt-get -y upgrade
 
-# sudo apt-get -y install transmission-daemon git-core python-pip
+# sudo apt-get -y install transmission-daemon git-core python-pip vim
 
 # sudo pip install Flask transmissionrpc
 
