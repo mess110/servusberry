@@ -34,6 +34,7 @@ def files(path=None):
     if is_folder == True:
       return api_exception(1, 'can not execute folder')
 
+    # TODO fix this. its a bad idea to rewrite result variable
     exe = Executor(result)
     result = exe.do_it()
 

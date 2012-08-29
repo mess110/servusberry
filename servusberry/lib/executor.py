@@ -1,21 +1,24 @@
+from servusberry.lib.command_builder import mp3_command, avi_command 
 from subprocess import call
 
 class Executor:
+
+  @staticmethod
+  def execute_cmd(cmd):
+    call(cmd, shell=True)
+
   def __init__(self, file_info):
     self.file_info = file_info
 
-  # TODO create a command builder
   def do_it(self):
     file_path = self.file_info['path']
 
     if self.__is_video():
-      cmd = 'totem ' + file_path
-      self.__execute_cmd(cmd)
 
       return { 'avi': cmd }
     elif self.__is_mp3():
-      cmd = 'mpg123 ' + file_path
-      self.__execute_cmd(cmd)
+      cmd = mp3_command(file_path)
+      Executor.execute_cmd(cmd)
 
       return { 'mp3': 1 }
     else:
@@ -26,7 +29,3 @@ class Executor:
 
   def __is_mp3(self):
     return self.file_info['extension'] == '.mp3'
-
-  def __execute_cmd(self, cmd):
-    cmd = cmd + ' &'
-    call(cmd, shell=True)
