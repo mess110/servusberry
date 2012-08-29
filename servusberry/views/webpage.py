@@ -13,7 +13,7 @@ def killall():
   cmd = kill_cmd('mpg123')
   Executor.execute_cmd(cmd)
 
-  cmd = kill_cmd('omxplayer')
+  cmd = kill_cmd('/usr/bin/omxplayer.bin')
   Executor.execute_cmd(cmd)
 
   return jsonify({'killed': 'all'})
