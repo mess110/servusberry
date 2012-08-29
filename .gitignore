@@ -29,3 +29,6 @@ pip-log.txt
 # ide
 *.swp
 *~
+
+# config files
+instance/app.cfg
