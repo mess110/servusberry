@@ -13,11 +13,19 @@ def files(path=None):
   if not os.path.exists(path):
     return jsonify({'code': 1, 'message': 'file does not exist'})
 
-  files = os.listdir(path)
+  files = []
+  is_folder = False
+  root, ext = os.path.splitext(path)
+
+  if not os.path.isfile(path):
+    files = os.listdir(path)
+    is_folder = True
 
   result = {
       'files': files,
-      'path': path
+      'is-folder': is_folder,
+      'path': path,
+      'extension': ext
       }
 
   return jsonify(result)
