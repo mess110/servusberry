@@ -30,7 +30,7 @@ def files(path=None):
       'extension': ext
       }
 
-  if request.method == 'GET':
+  if request.method == 'POST':
     if is_folder == True:
       return api_exception(1, 'can not execute folder')
 
