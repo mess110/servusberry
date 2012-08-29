@@ -10,6 +10,9 @@ def files(path=None):
   if path == None:
     path = '/' 
 
+  if not os.path.exists(path):
+    return jsonify({'code': 1, 'message': 'file does not exist'})
+
   files = os.listdir(path)
 
   result = {
