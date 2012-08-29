@@ -5,4 +5,5 @@ app = Flask(__name__)
 config(app)
 
 import servusberry.views.webpage
+import servusberry.views.files
 import servusberry.views.transmission
