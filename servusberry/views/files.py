@@ -3,6 +3,7 @@ import os
 from servusberry import app
 from flask import jsonify, request
 from servusberry.lib.executor import Executor
+from servusberry.lib.exceptions import api_exception 
 
 @app.route('/files')
 @app.route('/files/')
@@ -12,7 +13,7 @@ def files(path=None):
     path = '/' 
 
   if not os.path.exists(path):
-    return jsonify({'code': 1, 'message': 'file does not exist'})
+    return api_exception(1, 'file does not exist')
 
   files = []
   is_folder = False
@@ -31,7 +32,7 @@ def files(path=None):
 
   if request.method == 'GET':
     if is_folder == True:
-      return jsonify({'code': 1, 'message': 'can not execute a folder'})
+      return api_exception(1, 'can not execute folder')
 
     exe = Executor(result)
     result = exe.do_it()
