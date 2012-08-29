@@ -1,11 +1,11 @@
 import os
 
 from servusberry import app
-from flask import jsonify
+from flask import jsonify, request
 
 @app.route('/files')
 @app.route('/files/')
-@app.route('/files<regex(".*"):path>')
+@app.route('/files<regex(".*"):path>', methods=['GET', 'POST'])
 def files(path=None):
   if path == None:
     path = '/' 
@@ -28,4 +28,7 @@ def files(path=None):
       'extension': ext
       }
 
-  return jsonify(result)
+  if request.method == 'POST':
+    return jsonify({})
+  else:
+    return jsonify(result)
