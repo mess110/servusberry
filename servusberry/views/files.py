@@ -2,6 +2,7 @@ import os
 
 from servusberry import app
 from flask import jsonify, request
+from servusberry.lib.executor import Executor
 
 @app.route('/files')
 @app.route('/files/')
@@ -28,7 +29,11 @@ def files(path=None):
       'extension': ext
       }
 
-  if request.method == 'POST':
-    return jsonify({})
-  else:
-    return jsonify(result)
+  if request.method == 'GET':
+    if is_folder == True:
+      return jsonify({'code': 1, 'message': 'can not execute a folder'})
+
+    exe = Executor(result)
+    result = exe.do_it()
+
+  return jsonify(result)
