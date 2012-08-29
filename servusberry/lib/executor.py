@@ -1,4 +1,4 @@
-from servusberry.lib.command_builder import mp3_command, avi_command 
+from servusberry.lib.command_builder import mp3_cmd, avi_cmd 
 from subprocess import call
 
 class Executor:
@@ -14,10 +14,12 @@ class Executor:
     file_path = self.file_info['path']
 
     if self.__is_video():
+      cmd = avi_cmd(file_path)
+      Executor.execute_cmd(cmd)
 
       return { 'avi': cmd }
     elif self.__is_mp3():
-      cmd = mp3_command(file_path)
+      cmd = mp3_cmd(file_path)
       Executor.execute_cmd(cmd)
 
       return { 'mp3': 1 }

@@ -1,7 +1,7 @@
 from servusberry import app
 from flask import jsonify
 
-from servusberry.lib.command_builder import kill_command 
+from servusberry.lib.command_builder import kill_cmd 
 from servusberry.lib.executor import Executor
 
 @app.route('/', methods=['GET'])
@@ -10,7 +10,10 @@ def index():
 
 @app.route('/killall', methods=['POST'])
 def killall():
-  cmd = kill_command('mpg123')
+  cmd = kill_cmd('mpg123')
+  Executor.execute_cmd(cmd)
+
+  cmd = kill_cmd('omxplayer')
   Executor.execute_cmd(cmd)
 
   return jsonify({'killed': 'all'})

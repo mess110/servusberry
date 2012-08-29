@@ -1,8 +1,8 @@
-def mp3_command(path):
+def mp3_cmd(path):
   return 'mpg123 ' + path + ' &'
 
-def avi_command(path):
-  return ''
+def avi_cmd(path):
+  return 'omxplayer -r -o hdmi ' + path + ' &'
 
-def kill_command(program):
+def kill_cmd(program):
   return 'killall -9 ' + program + ' &'
