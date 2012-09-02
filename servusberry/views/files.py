@@ -7,7 +7,7 @@ from servusberry.lib.exceptions import api_exception
 
 @app.route('/files')
 @app.route('/files/')
-@app.route('/files<regex(".*"):path>', methods=['GET', 'POST'])
+@app.route('/files<regex(".*"):path>', methods=['GET', 'POST', 'DELETE'])
 def files(path=None):
   if path == None:
     path = '/' 
@@ -30,16 +30,20 @@ def files(path=None):
       'extension': ext
       }
 
+  exe = Executor(result)
+
   if request.method == 'POST':
     if is_folder == True:
       return api_exception(2, 'can not execute folder')
 
-    # TODO fix this. its a bad idea to rewrite result variable
-    exe = Executor(result)
-
     if not exe.supported_format():
       return api_exception(3, 'don\'t know what to do with this file')
 
-    result = exe.do_it()
+    return exe.do_it()
+  elif request.method == 'DELETE':
+    if not exe.supported_format():
+      return api_exception(4, 'can\'t delete this file format')
+
+    return exe.remove()
 
   return jsonify(result)

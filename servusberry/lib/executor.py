@@ -34,6 +34,9 @@ class Executor:
     else:
       return { 'false': 0 }
 
+  def remove(self):
+    return { 'removed': True }
+
   def __is_video(self):
     return self.file_info['extension'] == '.avi'
 
