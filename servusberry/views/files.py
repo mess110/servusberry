@@ -32,13 +32,13 @@ def files(path=None):
 
   if request.method == 'POST':
     if is_folder == True:
-      return api_exception(1, 'can not execute folder')
+      return api_exception(2, 'can not execute folder')
 
     # TODO fix this. its a bad idea to rewrite result variable
     exe = Executor(result)
 
     if not exe.supported_format():
-      return api_exception(1, 'don\'t know what to do with this file')
+      return api_exception(3, 'don\'t know what to do with this file')
 
     result = exe.do_it()
 
