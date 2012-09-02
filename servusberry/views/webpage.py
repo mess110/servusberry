@@ -1,12 +1,13 @@
 from servusberry import app
 from flask import jsonify
 
-from servusberry.lib.command_builder import kill_cmd 
+from servusberry.lib.command_builder import kill_cmd
 from servusberry.lib.executor import Executor
 
-@app.route('/', methods=['GET'])
+@app.route('/')
+@app.route('/ping')
 def index():
-  return jsonify({})
+  return jsonify({'servusberry': 'server', 'version': 1}) 
 
 @app.route('/killall', methods=['POST'])
 def killall():
