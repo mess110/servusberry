@@ -10,6 +10,14 @@ class Executor:
   def __init__(self, file_info):
     self.file_info = file_info
 
+  def supported_format(self):
+    if self.__is_video():
+      return True
+    if self.__is_mp3():
+      return True
+
+    return False
+
   def do_it(self):
     file_path = self.file_info['path']
 

@@ -36,6 +36,10 @@ def files(path=None):
 
     # TODO fix this. its a bad idea to rewrite result variable
     exe = Executor(result)
+
+    if not exe.supported_format():
+      return api_exception(1, 'don\'t know what to do with this file')
+
     result = exe.do_it()
 
   return jsonify(result)
