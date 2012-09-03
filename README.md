@@ -28,3 +28,5 @@ echo . > /tmp/cmd (Start omxplayer running as the command will initial wait for 
 echo -n p > /tmp/cmd - Playback is paused
 
 echo -n q > /tmp/cmd - Playback quits
+
+implement autoupdate

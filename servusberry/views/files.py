@@ -39,11 +39,11 @@ def files(path=None):
     if not exe.supported_format():
       return api_exception(3, 'don\'t know what to do with this file')
 
-    return exe.do_it()
+    return jsonify(exe.do_it())
   elif request.method == 'DELETE':
     if not exe.supported_format():
       return api_exception(4, 'can\'t delete this file format')
 
-    return exe.remove()
+    return jsonify(exe.remove())
 
   return jsonify(result)
