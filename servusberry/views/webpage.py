@@ -1,7 +1,7 @@
 from servusberry import app
 from flask import jsonify
 
-from servusberry.lib.command_builder import kill_cmd
+from servusberry.lib.command_builder import kill_cmd, update_cmd
 from servusberry.lib.executor import Executor
 
 @app.route('/')
@@ -18,3 +18,10 @@ def killall():
   Executor.execute_cmd(cmd)
 
   return jsonify({'killed': 'all'})
+
+@app.route('/update')
+def update():
+  cmd = update_cmd(app.root_path)
+  Executor.execute_cmd(cmd)
+
+  return jsonify({})

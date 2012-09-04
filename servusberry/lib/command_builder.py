@@ -6,3 +6,6 @@ def avi_cmd(path):
 
 def kill_cmd(program):
   return 'killall -9 ' + program + ' &'
+
+def update_cmd(path):
+  return 'sh ' + path + '/../update.sh &'
