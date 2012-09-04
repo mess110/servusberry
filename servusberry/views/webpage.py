@@ -19,7 +19,7 @@ def killall():
 
   return jsonify({'killed': 'all'})
 
-@app.route('/update')
+@app.route('/update', methods=['POST'])
 def update():
   cmd = update_cmd(app.root_path)
   Executor.execute_cmd(cmd)
