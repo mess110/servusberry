@@ -9,9 +9,9 @@ from servusberry.lib.exceptions import api_exception
 @app.route('/radio/', methods=['GET', 'POST'])
 def radio():
   radios = {
-      'FM - The Chillout Lounge': 'http://64.71.184.99:8010/',
-      'JFR Radio': 'http://uk1.internet-radio.com:15074/',
-      'Rocky FM': 'http://tuner.rockyfm.de:80/',
+      'FM-TheChilloutLounge': 'http://64.71.184.99:8010/',
+      'JFRRadio': 'http://uk1.internet-radio.com:15074/',
+      'RockyFM': 'http://tuner.rockyfm.de:80/',
       'RockRadio1.Com': 'http://91.121.201.88:8000/'
       }
 
