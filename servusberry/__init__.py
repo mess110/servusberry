@@ -6,4 +6,5 @@ config(app)
 
 import servusberry.views.webpage
 import servusberry.views.files
+import servusberry.views.radio
 import servusberry.views.transmission

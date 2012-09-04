@@ -1,4 +1,4 @@
-def mp3_cmd(path):
+def audio_cmd(path):
   return 'mpg123 ' + path + ' &'
 
 def avi_cmd(path):
