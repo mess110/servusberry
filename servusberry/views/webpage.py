@@ -7,7 +7,9 @@ from servusberry.lib.executor import Executor
 @app.route('/')
 @app.route('/ping')
 def index():
-  return jsonify({'servusberry': 'server', 'version': 1}) 
+  stats = Executor.stats()
+
+  return jsonify(stats)
 
 @app.route('/killall', methods=['POST'])
 def killall():

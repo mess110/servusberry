@@ -1,4 +1,5 @@
 from servusberry.lib.command_builder import audio_cmd, avi_cmd 
+from servusberry.lib.util import human_time, get_uptime
 from subprocess import call
 
 class Executor:
@@ -6,6 +7,22 @@ class Executor:
   @staticmethod
   def execute_cmd(cmd):
     call(cmd, shell=True)
+
+  @staticmethod
+  def stats():
+    uptime, idletime = get_uptime() 
+
+    return {
+      'servusberry': 'server',
+      'version': 1,
+      'uptime': uptime,
+      'uptime': human_time(uptime),
+      'idletime': human_time(idletime),
+      'raw': {
+        'uptime': uptime,
+        'idletime': idletime
+      }
+    }
 
   def __init__(self, file_info):
     self.file_info = file_info
