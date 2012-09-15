@@ -9,3 +9,6 @@ def kill_cmd(program):
 
 def update_cmd(path):
   return 'sh ' + path + '/../update.sh &'
+
+def mute_cmd():
+  return 'amixer set PCM toggle'
