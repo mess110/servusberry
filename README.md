@@ -30,3 +30,9 @@ echo -n p > /tmp/cmd - Playback is paused
 echo -n q > /tmp/cmd - Playback quits
 
 implement autoupdate
+
+
+# AUDIO
+amixer set PCM toggle
+amixer set PCM 1000+
+amixer set PCM 1000-
