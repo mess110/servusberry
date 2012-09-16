@@ -10,6 +10,9 @@ def config(app):
   except IOError:
     raise SystemExit("\nMissing config: %s\n" % config_path)
 
+def version():
+  return '1.0.0'
+
 def add_converters(app):
   app.url_map.converters['regex'] = RegexConverter
 

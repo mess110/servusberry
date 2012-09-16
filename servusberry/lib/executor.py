@@ -1,3 +1,4 @@
+from servusberry.config import version
 from servusberry.lib.command_builder import audio_cmd
 from servusberry.lib.command_builder import avi_cmd
 from servusberry.lib.util import human_time
@@ -16,7 +17,7 @@ class Executor:
 
     return {
       'servusberry': 'server',
-      'version': 1,
+      'version': version(),
       'uptime': uptime,
       'uptime': human_time(uptime),
       'idletime': human_time(idletime),
