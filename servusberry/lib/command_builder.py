@@ -22,13 +22,13 @@ def avi_seek(seek):
 
   direction = ''
   if seek == 1:
-    direction = "$'\x1b\x5b\x41'"
+    direction = "$'\x1b\x5b\x42'"
   elif seek == 2:
     direction = "$'\x1b\x5b\x44'"
   elif seek == 3:
     direction = "$'\x1b\x5b\x43'"
   elif seek == 4:
-    direction = "$'\x1b\x5b\x42'"
+    direction = "$'\x1b\x5b\x41'"
   else:
     direction = "."
 
