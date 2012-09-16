@@ -1,5 +1,6 @@
+from flask import jsonify
+from flask import request
 from servusberry import app
-from flask import jsonify, request
 
 from servusberry.lib.command_builder import audio_cmd
 from servusberry.lib.executor import Executor

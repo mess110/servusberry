@@ -1,8 +1,10 @@
-from servusberry import app
 from flask import jsonify
+from servusberry import app
 
-from servusberry.lib.command_builder import kill_cmd, update_cmd, mute_cmd
+from servusberry.lib.command_builder import kill_cmd
+from servusberry.lib.command_builder import update_cmd
 from servusberry.lib.executor import Executor
+from servusberry.lib.exceptions import api_exception 
 
 @app.route('/')
 @app.route('/ping')
@@ -20,11 +22,6 @@ def killall():
   Executor.execute_cmd(cmd)
 
   return jsonify({'killed': 'all'})
-
-@app.route('/mute', methods=['GET'])
-def mute():
-  Executor.execute_cmd(mute_cmd())
-  return jsonify({})
 
 @app.route('/update', methods=['POST'])
 def update():

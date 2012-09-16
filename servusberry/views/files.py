@@ -1,7 +1,8 @@
 import os
 
+from flask import jsonify
+from flask import request
 from servusberry import app
-from flask import jsonify, request
 from servusberry.lib.executor import Executor
 from servusberry.lib.exceptions import api_exception 
 

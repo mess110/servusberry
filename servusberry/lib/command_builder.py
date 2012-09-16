@@ -12,3 +12,6 @@ def update_cmd(path):
 
 def mute_cmd():
   return 'amixer set PCM toggle'
+
+def volume_cmd(vol):
+  return 'amixer set PCM ' + vol
