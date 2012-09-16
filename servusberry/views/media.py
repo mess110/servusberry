@@ -3,6 +3,7 @@ from servusberry import app
 
 from servusberry.lib.command_builder import mute_cmd
 from servusberry.lib.command_builder import volume_cmd
+from servusberry.lib.command_builder import avi_toggle_play
 from servusberry.lib.exceptions import invalid_volume_param
 from servusberry.lib.exceptions import missing_volume_param
 from servusberry.lib.executor import Executor
@@ -29,3 +30,9 @@ def volumne(amount=None):
   Executor.execute_cmd(cmd)
 
   return jsonify({'volume_change': amount})
+
+@app.route('/play')
+def play():
+  Executor.execute_cmd(avi_toggle_play())
+  return jsonify({'toggle_play': True})
+  
