@@ -1,5 +1,7 @@
-from servusberry.lib.command_builder import audio_cmd, avi_cmd 
-from servusberry.lib.util import human_time, get_uptime
+from servusberry.lib.command_builder import audio_cmd
+from servusberry.lib.command_builder import avi_cmd
+from servusberry.lib.util import human_time
+from servusberry.lib.util import get_uptime
 from subprocess import call
 
 class Executor:
