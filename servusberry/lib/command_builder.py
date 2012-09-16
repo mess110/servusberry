@@ -17,6 +17,23 @@ def avi_toggle_play():
 
   return 'echo -n p > ' + fifo + ' &'
 
+def avi_seek(seek):
+  fifo = '/tmp/omxplayer_fifo'
+
+  direction = ''
+  if seek == -2:
+    direction = "$'\x1b\x5b\x41'"
+  elif seek == -1:
+    direction = "$'\x1b\x5b\x44'"
+  elif seek == 1:
+    direction = "$'\x1b\x5b\x43'"
+  elif seek == 2:
+    direction = "$'\x1b\x5b\x42'"
+  else:
+    direction = "."
+
+  return  'echo -n ' + direction + ' > ' + fifo + ' &'
+
 def kill_cmd(program):
   return 'killall -9 ' + program + ' &'
 

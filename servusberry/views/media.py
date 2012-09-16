@@ -4,6 +4,7 @@ from servusberry import app
 from servusberry.lib.command_builder import mute_cmd
 from servusberry.lib.command_builder import volume_cmd
 from servusberry.lib.command_builder import avi_toggle_play
+from servusberry.lib.command_builder import avi_seek
 from servusberry.lib.exceptions import invalid_volume_param
 from servusberry.lib.exceptions import missing_volume_param
 from servusberry.lib.executor import Executor
@@ -35,4 +36,9 @@ def volumne(amount=None):
 def play():
   Executor.execute_cmd(avi_toggle_play())
   return jsonify({'toggle_play': True})
-  
+
+@app.route('/seek/<int:seek>')
+def seek(seek=None):
+  cmd = avi_seek(seek)
+  Executor.execute_cmd(cmd)
+  return jsonify({'seek': True})
