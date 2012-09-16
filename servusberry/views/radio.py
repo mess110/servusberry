@@ -4,7 +4,8 @@ from servusberry import app
 
 from servusberry.lib.command_builder import audio_cmd
 from servusberry.lib.executor import Executor
-from servusberry.lib.exceptions import api_exception
+from servusberry.lib.exceptions import invalid_radio_params 
+from servusberry.lib.exceptions import invalid_radio_station 
 
 @app.route('/radio', methods=['GET', 'POST'])
 @app.route('/radio/', methods=['GET', 'POST'])
@@ -24,11 +25,11 @@ def radio():
       if radios.has_key(name):
         play_station(radios[name])
       else:
-        return api_exception(5, 'radio station does not exist')
+        return invalid_radio_station()
     elif url != None:
       play_station(url)
     else:
-      return api_exception(4, 'name or url param required')
+      return invalid_radio_params()
 
   return jsonify(radios)
 

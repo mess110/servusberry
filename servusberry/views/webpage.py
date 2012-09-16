@@ -4,7 +4,6 @@ from servusberry import app
 from servusberry.lib.command_builder import kill_cmd
 from servusberry.lib.command_builder import update_cmd
 from servusberry.lib.executor import Executor
-from servusberry.lib.exceptions import api_exception 
 
 @app.route('/')
 @app.route('/ping')
