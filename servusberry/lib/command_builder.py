@@ -21,13 +21,13 @@ def avi_seek(seek):
   fifo = '/tmp/omxplayer_fifo'
 
   direction = ''
-  if seek == -2:
+  if seek == 1:
     direction = "$'\x1b\x5b\x41'"
-  elif seek == -1:
-    direction = "$'\x1b\x5b\x44'"
-  elif seek == 1:
-    direction = "$'\x1b\x5b\x43'"
   elif seek == 2:
+    direction = "$'\x1b\x5b\x44'"
+  elif seek == 3:
+    direction = "$'\x1b\x5b\x43'"
+  elif seek == 4:
     direction = "$'\x1b\x5b\x42'"
   else:
     direction = "."
