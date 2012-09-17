@@ -1,26 +1,21 @@
-from sh import killall
-from sh import git
-from sh import amixer
-from sh import mpg123
+import sh
 
 def audio_cmd(path):
-  mpg123(path, _bg=True)
+  sh.mpg123(path, _bg=True)
 
 def avi_cmd(path):
   fifo = '/tmp/omxplayer_fifo'
 
-  cmd = 'rm -f ' + fifo + ';'
-  cmd += 'mkfifo ' + fifo + ';'
-  cmd += 'omxplayer -r -o hdmi ' + path +' < ' + fifo + ' &'
-  cmd += 'sleep 0.1;'
-  cmd += 'echo . > ' + fifo + ' &'
-
-  return cmd
+  sh.rm('-f', fifo)
+  sh.mkfifo(fifo)
+  sh.omxplayer('-r', '-o', 'hdmi', path, '<', fifo, _bg=True)
+  sh.sleep(0.1)
+  sh.echo('.', '>', fifo, _bg=True)
 
 def avi_toggle_play():
   fifo = '/tmp/omxplayer_fifo'
 
-  return 'echo -n p > ' + fifo + ' &'
+  sh.echo('-n', 'p', '>', fifo, _bg=True)
 
 def avi_seek(seek):
   fifo = '/tmp/omxplayer_fifo'
@@ -37,16 +32,16 @@ def avi_seek(seek):
   else:
     direction = "."
 
-  return  'echo -n ' + direction + ' > ' + fifo + ' &'
+  sh.echo('-n', direction, '>', fifo, _bg=True)
 
 def kill_cmd(program):
-  killall('-9', program, _bg=True)
+  sh.killall('-9', program, _bg=True)
 
-def update_cmd(path):
-  git('pull')
+def update_cmd():
+  sh.git('pull')
 
 def mute_cmd():
-  amixer('set', 'PCM', 'toggle', _bg=True)
+  sh.amixer('set', 'PCM', 'toggle', _bg=True)
 
 def volume_cmd(vol):
-  amixer('set', 'PCM', vol, _bg=True)
+  sh.amixer('set', 'PCM', vol, _bg=True)

@@ -20,5 +20,5 @@ def killall():
 
 @app.route('/update', methods=['POST'])
 def update():
-  git('pull')
+  update_cmd()
   return jsonify({'updated': True})

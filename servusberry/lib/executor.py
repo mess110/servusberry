@@ -8,10 +8,6 @@ from subprocess import call
 class Executor:
 
   @staticmethod
-  def execute_cmd(cmd):
-    call(cmd, shell=True)
-
-  @staticmethod
   def stats():
     uptime, idletime = get_uptime() 
 
@@ -31,24 +27,17 @@ class Executor:
     self.file_info = file_info
 
   def supported_format(self):
-    if self.__is_video():
-      return True
-    if self.__is_mp3():
-      return True
-
-    return False
+    return self.file_info['extension'] in ['.avi', '.mp3']
 
   def do_it(self):
     file_path = self.file_info['path']
 
     if self.__is_video():
-      cmd = avi_cmd(file_path)
-      Executor.execute_cmd(cmd)
+      avi_cmd(file_path)
 
       return { 'avi': cmd }
     elif self.__is_mp3():
-      cmd = audio_cmd(file_path)
-      Executor.execute_cmd(cmd)
+      audio_cmd(file_path)
 
       return { 'mp3': 1 }
     else:
@@ -59,7 +48,7 @@ class Executor:
     return { 'removed': False }
 
   def __is_video(self):
-    return self.file_info['extension'] == '.avi'
+    return self.file_info['extension'] in ['.avi']
 
   def __is_mp3(self):
-    return self.file_info['extension'] == '.mp3'
+    return self.file_info['extension'] in ['.mp3']

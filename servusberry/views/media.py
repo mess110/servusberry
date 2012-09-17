@@ -33,11 +33,10 @@ def volumne(amount=None):
 
 @app.route('/play')
 def play():
-  Executor.execute_cmd(avi_toggle_play())
+  avi_toggle_play()
   return jsonify({'toggle_play': True})
 
 @app.route('/seek/<int:seek>')
 def seek(seek=None):
-  cmd = avi_seek(seek)
-  Executor.execute_cmd(cmd)
+  avi_seek(seek)
   return jsonify({'seek': True})
