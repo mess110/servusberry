@@ -28,7 +28,6 @@ def radio():
         return invalid_radio_station()
     elif url != None:
       audio_cmd(url)
-      play_station(url)
     else:
       return invalid_radio_params()
 
