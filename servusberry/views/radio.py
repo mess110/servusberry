@@ -23,16 +23,13 @@ def radio():
 
     if name != None:
       if radios.has_key(name):
-        play_station(radios[name])
+        audio_cmd(radios[name])
       else:
         return invalid_radio_station()
     elif url != None:
+      audio_cmd(url)
       play_station(url)
     else:
       return invalid_radio_params()
 
   return jsonify(radios)
-
-def play_station(uri):
-  cmd = audio_cmd(uri)
-  Executor.execute_cmd(cmd)

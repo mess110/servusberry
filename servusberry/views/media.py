@@ -11,7 +11,7 @@ from servusberry.lib.executor import Executor
 
 @app.route('/mute', methods=['POST'])
 def mute():
-  Executor.execute_cmd(mute_cmd())
+  mute_cmd()
   return jsonify({'volume_change': 'mute'})
 
 @app.route('/volume', methods=['POST'])
@@ -27,8 +27,7 @@ def volumne(amount=None):
   if not amount[:-1].isdigit():
     return invalid_volume_param()
 
-  cmd = volume_cmd(amount)
-  Executor.execute_cmd(cmd)
+  volume_cmd(amount)
 
   return jsonify({'volume_change': amount})
 

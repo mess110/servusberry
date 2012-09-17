@@ -1,8 +1,10 @@
 from sh import killall
 from sh import git
+from sh import amixer
+from sh import mpg123
 
 def audio_cmd(path):
-  return 'mpg123 ' + path + ' &'
+  mpg123(path, _bg=True)
 
 def avi_cmd(path):
   fifo = '/tmp/omxplayer_fifo'
@@ -44,7 +46,7 @@ def update_cmd(path):
   git('pull')
 
 def mute_cmd():
-  return 'amixer set PCM toggle'
+  amixer('set', 'PCM', 'toggle', _bg=True)
 
 def volume_cmd(vol):
-  return 'amixer set PCM ' + vol
+  amixer('set', 'PCM', vol, _bg=True)
