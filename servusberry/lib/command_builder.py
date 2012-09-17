@@ -1,3 +1,6 @@
+from sh import killall
+from sh import git
+
 def audio_cmd(path):
   return 'mpg123 ' + path + ' &'
 
@@ -35,10 +38,10 @@ def avi_seek(seek):
   return  'echo -n ' + direction + ' > ' + fifo + ' &'
 
 def kill_cmd(program):
-  return 'killall -9 ' + program + ' &'
+  killall('-9', program, _bg=True)
 
 def update_cmd(path):
-  return 'sh ' + path + '/../update.sh &'
+  git('pull')
 
 def mute_cmd():
   return 'amixer set PCM toggle'

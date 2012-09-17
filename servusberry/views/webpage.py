@@ -9,22 +9,16 @@ from servusberry.lib.executor import Executor
 @app.route('/ping')
 def index():
   stats = Executor.stats()
-
   return jsonify(stats)
 
 @app.route('/killall', methods=['POST'])
 def killall():
-  cmd = kill_cmd('mpg123')
-  Executor.execute_cmd(cmd)
-
-  cmd = kill_cmd('/usr/bin/omxplayer.bin')
-  Executor.execute_cmd(cmd)
+  kill_cmd('mpg123')
+  kill_cmd('/usr/bin/omxplayer.bin')
 
   return jsonify({'killed': 'all'})
 
 @app.route('/update', methods=['POST'])
 def update():
-  cmd = update_cmd(app.root_path)
-  Executor.execute_cmd(cmd)
-
-  return jsonify({})
+  git('pull')
+  return jsonify({'updated': True})
