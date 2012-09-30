@@ -5,4 +5,4 @@ from servusberry.lib.transmission_remote import list_torrents
 @app.route('/torrents', methods=['GET'])
 def torrents():
   result = list_torrents()
-  return jsonify(result)
+  return jsonify({'torrents': result})

@@ -1,7 +1,7 @@
 import transmissionrpc
 
 def list_torrents():
-  tc = transmissionrpc.Client('localhost', 9091)
+  tc = transmissionrpc.Client('127.0.0.1')
   result = {}
 
   for key in tc.list():
