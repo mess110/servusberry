@@ -3,7 +3,6 @@ from servusberry.lib.command_builder import audio_cmd
 from servusberry.lib.command_builder import avi_cmd
 from servusberry.lib.util import human_time
 from servusberry.lib.util import get_uptime
-from subprocess import call
 
 class Executor:
 
@@ -35,7 +34,7 @@ class Executor:
     if self.__is_video():
       avi_cmd(file_path)
 
-      return { 'avi': cmd }
+      return { 'avi': file_path}
     elif self.__is_mp3():
       audio_cmd(file_path)
 

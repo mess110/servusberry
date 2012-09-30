@@ -1,4 +1,5 @@
 import sh
+from subprocess import call
 
 def audio_cmd(path):
   sh.mpg123(path, _bg=True)
@@ -8,9 +9,10 @@ def avi_cmd(path):
 
   sh.rm('-f', fifo)
   sh.mkfifo(fifo)
-  sh.omxplayer('-r', '-o', 'hdmi', path, '<', fifo, _bg=True)
-  sh.sleep(0.1)
-  sh.echo('.', '>', fifo, _bg=True)
+  omx_fifo_cmd = "/usr/bin/omxplayer -r -o hdmi " + path + " < " + fifo + " &"
+  call(omx_fifo_cmd, shell=True)
+  sh.sleep(0.2)
+  call("echo . > " + fifo + " &", shell=True)
 
 def avi_toggle_play():
   fifo = '/tmp/omxplayer_fifo'
